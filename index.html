@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Product App </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div class="nav-bar"></div>
+        <div id="app">
+            <div class="product">
+                <div class="product-image">
+                    <img v-bind:src="image">
+                    <img v-bind:src="drinkImage">
+                </div>
+                
+                <div class="product-info">
+                    <div class="cart">
+                        <p>Cart ({{cart}})</p>
+                        <button v-on:click="clearCart">Clear cart</button>
+                    </div>
+                    
+                    
+                    <h1 @mouseover="ogImage">{{product}}</h1>
+                    <a :href="link">ogLazeez.com</a>
+                    <p v-if="i > 10">In Stock</p>
+                    <p v-else-if="i>0 && i<=10">Almost sold out!!!</p>
+                    <p v-else>Out of Stock</p>
+
+                    <p v-if="onSale">On Sale</p>
+
+                    <h3 style="margin-bottom: 4px;">Menu</h3>
+                    <ul style="margin-top: 4px;">
+                        <li v-for="listItem in menuItems">{{listItem}}</li>
+                    </ul>
+
+                    <h3 style="margin-bottom: 4px;">Meat</h3>
+                    <div v-for="m in meats" v-bind:key="m.meatID" >
+                        <p style="margin-top: 4px;">{{m.meatType}}</p>
+                    </div>
+
+                    <h3 style="margin-bottom: 4px;">Sizes</h3>
+                    <ul style="margin-top: 4px;">
+                        <li v-for="s in sizes" v-bind:key="s.sizeName" v-on:click="updateProduct(s.sizeImage)">{{s.sizeName}}</li>
+                    </ul>
+
+                    <h3 style="margin-bottom: 4px;">Drinks - only FANTA</h3>
+                    <div    v-for="d in drinks" 
+                            v-bind:key="d.drinkID" 
+                            class="color-box"
+                            :style="{backgroundColor: d.drinkColor}"
+                            @click="updateDrinkImage(d.drinkImage)"
+                            style="margin-bottom: 10px;">
+                    </div>
+
+                    <div class="cart" style="font-style: red">
+                        <p>Lines ({{linesofHeat}})</p>
+                        <button v-on:click="addLine">Add line</button>
+                        <button v-on:click="removeLine">Remove line</button>
+                    </div>
+
+                    <button v-on:click="addToCart">Add to cart</button>
+                    
+                </div>
+                
+         </divdiv>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
+
